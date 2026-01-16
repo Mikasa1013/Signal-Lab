@@ -1,0 +1,13 @@
+{
+  "name": "After New Endpoint",
+  "version": "1.0.0",
+  "description": "Checks that observability is wired after a new controller or service file is created",
+  "when": {
+    "type": "fileCreated",
+    "patterns": ["apps/backend/src/**/*.controller.ts", "apps/backend/src/**/*.service.ts"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new backend controller or service file was just created. Please verify it has proper observability: 1) MetricsService is injected and httpRequestsTotal is incremented, 2) Structured logs use the log() helper with correct levels (info/warn/error), 3) Error paths call Sentry.captureException(), 4) Swagger @ApiOperation decorator is present on controller methods. Run /check-obs on the new file if needed."
+  }
+}

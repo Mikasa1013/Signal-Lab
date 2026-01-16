@@ -1,0 +1,13 @@
+{
+  "name": "After Prisma Schema Change",
+  "version": "1.0.0",
+  "description": "Reminds to run migration and regenerate Prisma client after schema.prisma is edited",
+  "when": {
+    "type": "fileEdited",
+    "patterns": ["prisma/schema.prisma"]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The Prisma schema was just edited. Please remind the user to: 1) Run `npx prisma migrate dev --name <description>` to create a migration, 2) Run `npx prisma generate` to regenerate the client, 3) Restart the backend container if running in Docker. Check if there are any new models or fields that need corresponding DTOs or service updates."
+  }
+}
